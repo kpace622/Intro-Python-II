@@ -44,6 +44,7 @@ room['treasure'].s_to = room['narrow']
 
 player1 = Player('Kyle', room['outside'])
 
+
 # Write a loop that:
 #
 # * Prints the current room name
@@ -55,14 +56,21 @@ player1 = Player('Kyle', room['outside'])
 #
 # If the user enters "q", quit the game.
 
-room = player1.current_room.name
-room_desc = player1.current_room.description
 while True:
-    print(room)
-    print(room_desc)
-    x = input('Enter "n" "s" "e" or "w": ')
-    print(x)
-    if x == "n":
-        room = player1.current_room.n_to.name
-        room_desc = player1.current_room.n_to.description
-    else: print('Bad!')     
+    print(player1.location)
+
+    x = input('Enter "n" "s" "e" "w" or press "q" to quit: ')
+    try:
+        if x == "n":
+            player1.location = player1.location.n_to
+        elif x == "s":
+            player1.location = player1.location.s_to
+        elif x == "e":
+            player1.location = player1.location.e_to
+        elif x == "w":
+            player1.location = player1.location.w_to
+        elif x == "q":
+            print("quit!")
+            break
+    except: 
+        print("You can't go that way!")
